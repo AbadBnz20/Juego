@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model ganadores {
+  id_ganador     Int      @id @default(autoincrement())
+  usuario_id     Int
+  numero_intento Int
+  tipo           String   @db.VarChar(255)
+  fecha_crea     DateTime @default(now()) @db.DateTime(0)
+}
+
+model juegos {
+  id_juego        Int       @id @default(autoincrement())
+  usuario_id      Int
+  nombre_completo String    @db.VarChar(255)
+  correo_usuario  String    @db.VarChar(255)
+  telefono        String?   @db.VarChar(255)
+  codigo          String    @db.VarChar(30)
+  fecha_uso       DateTime? @db.DateTime(0)
+  estado          Boolean   @default(true)
+  fecha_crea      DateTime  @default(now()) @db.DateTime(0)
+}
